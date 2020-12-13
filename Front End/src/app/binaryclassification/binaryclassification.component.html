@@ -1,0 +1,55 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Binary Classification</h4>
+                        <p class="card-category">Predict if an engine will fail within a particular period e.g. 30 Cycles</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Unit
+                                    </th>
+                                    <th>
+                                        RUL
+                                    </th>
+                                    <th>
+                                        Ground Truth
+                                    </th>
+                                    <th>
+                                        Decision Tree
+                                    </th>
+                                    <th>
+                                        Neural Network
+                                    </th>
+                                    <th>
+                                        Random Forest
+                                    </th>
+                                    <th>
+                                        SVM
+                                    </th>
+                                </thead>
+                                <tbody *ngIf="rawDataset.data && rawDataset.data.length>0">
+                                    <tr *ngFor="let data of rawDataset['data']  | paginate: { itemsPerPage: 10, currentPage: p}">
+                                        <td>{{data['unit']}}</td>
+                                        <td>{{data['Groundtruth_Rul']}}</td>
+                                        <td>{{data['GroundtruthClassification']}}</td>
+                                        <td>{{data['DecisionTreeClassification']}}</td>
+                                        <td>{{data['NeuralNetworkClassification']}}</td>
+                                        <td>{{data['RandomforestClassification']}}</td>
+                                        <td>{{data['SVMClassification']}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>

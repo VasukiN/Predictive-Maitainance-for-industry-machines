@@ -1,0 +1,53 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">RUL through Regression</h4>
+                        <p class="card-category">Regression Predictive for remaining userfull life for nth record of
+                            each unit</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Unit
+                                    </th>
+                                    <th>
+                                        Ground Truth
+                                    </th>
+                                    <th>
+                                        Linear Regression
+                                    </th>
+                                    <th>
+                                        Neural Network
+                                    </th>
+                                    <th>
+                                        Random Forest
+                                    </th>
+                                    <th>
+                                        SVM
+                                    </th>
+                                </thead>
+                                <tbody *ngIf="rawDataset.data && rawDataset.data.length>0">
+                                    <tr
+                                        *ngFor="let data of rawDataset['data']  | paginate: { itemsPerPage: 10, currentPage: p}">
+                                        <td>{{data['unit']}}</td>
+                                        <td>{{data['Groundtruth_Rul']}}</td>
+                                        <td>{{data['Linear_Rul']}}</td>
+                                        <td>{{data['NeuralNetwork_Rul']}}</td>
+                                        <td>{{data['Randomforest_Rul']}}</td>
+                                        <td>{{data['SVM_Rul']}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
